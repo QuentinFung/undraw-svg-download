@@ -1,0 +1,2 @@
+mkdir -p ./svg
+for ((i=1;i<60;i++)); do curl -s https://undraw.co/api/illustrations\?page\=$i | jq '.illustrations[] | (.title, .image)' -r -M | sed -e 's/\(.*\)/\1/; s/\ /_/g'|xargs -n2 -L2 bash -c 'curl --silent --output ./svg/$1.svg $2 > /dev/null' bash;done;
